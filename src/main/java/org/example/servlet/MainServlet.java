@@ -1,5 +1,6 @@
 package org.example.servlet;
 
+import org.example.config.Config;
 import org.example.controller.PostController;
 import org.example.exception.NotFoundException;
 import org.example.repository.PostRepository;
@@ -18,7 +19,7 @@ public class MainServlet extends HttpServlet {
 
     @Override
     public void init() {
-        final var context = new AnnotationConfigApplicationContext("org.example");
+        final var context = new AnnotationConfigApplicationContext(Config.class);
         controller = context.getBean(PostController.class);
     }
 
