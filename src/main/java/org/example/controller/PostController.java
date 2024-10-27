@@ -3,12 +3,14 @@ package org.example.controller;
 import com.google.gson.Gson;
 import org.example.service.PostService;
 import org.example.model.Post;
+import org.springframework.stereotype.Controller;
 
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Reader;
 
+@Controller
 public class PostController {
     public static final String APPLICATION_JSON = "application/json";
     private final PostService service;
@@ -39,7 +41,9 @@ public class PostController {
     }
 
     public void removeById(long id, HttpServletResponse response) throws IOException {
+        response.setContentType(APPLICATION_JSON);
+        final var data = service.getById(id);
         service.removeById(id);
-        response.getWriter().print("Post with id#" + id + " deleted successful");
+        response.getWriter().print(gson.toJson(data));
     }
 }
