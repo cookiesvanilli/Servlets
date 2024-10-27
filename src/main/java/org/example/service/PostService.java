@@ -3,9 +3,12 @@ package org.example.service;
 import org.example.model.Post;
 import org.example.repository.PostRepository;
 import org.example.exception.NotFoundException;
+import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
+@Service
 public class PostService {
     private final PostRepository repository;
 
@@ -13,7 +16,7 @@ public class PostService {
         this.repository = repository;
     }
 
-    public List<Post> all() {
+    public Collection<Post> all() {
         return repository.all();
     }
 
